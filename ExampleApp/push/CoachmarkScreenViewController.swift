@@ -32,7 +32,9 @@ class CoachmarkScreenViewController: UIViewController, CleverTapDisplayUnitDeleg
         
         CleverTap.sharedInstance()?.setDisplayUnitDelegate(self)
         
-        CleverTap.sharedInstance()?.recordEvent("coachmark_nd")
+//        CleverTap.sharedInstance()?.recordEvent("coachmarks_nd")
+        
+        CleverTap.sharedInstance()?.recordEvent("CoachmarksND")
     }
     
     func displayUnitsUpdated(_ displayUnits: [CleverTapDisplayUnit]) {
@@ -43,11 +45,16 @@ class CoachmarkScreenViewController: UIViewController, CleverTapDisplayUnitDeleg
     
     func prepareDisplayView(_ unit: CleverTapDisplayUnit) {
         if let jsonData = unit.json,
-           let customKV = jsonData["custom_kv"] as? [String: Any]  {
-            CoachmarkManager.shared.showCoachmarks(fromJson: customKV, in: self.view)
+           let customKV = jsonData["custom_kv"] as? [String: Any] {
+            print("Native Display Data: \(customKV)")
+            CleverTap.sharedInstance()?.recordDisplayUnitViewedEvent(forID: unit.unitID!)
+            CoachmarkManager.shared.showCoachmarks(fromJson: customKV, in: self.view){
+                CleverTap.sharedInstance()?.recordDisplayUnitClickedEvent(forID: unit.unitID!)
+            }
         } else {
             print("Failed to get JSON data for Display Unit")
         }
+
     }
     
     private func setupBottomBar() {
