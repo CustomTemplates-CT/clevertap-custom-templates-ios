@@ -15,10 +15,8 @@
 		4E04D46F294C89CD008F5291 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E04D46E294C89CD008F5291 /* NotificationViewController.swift */; };
 		4E04D472294C89CD008F5291 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E04D470294C89CD008F5291 /* MainInterface.storyboard */; };
 		4E04D476294C89CD008F5291 /* NotificationContentDemo.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4E04D468294C89CD008F5291 /* NotificationContentDemo.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		4E099C712D72E204001BD2D6 /* CoachmarkScreenUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E099C702D72E204001BD2D6 /* CoachmarkScreenUI.swift */; };
+		4E15ABF52D75F96400FB7917 /* CTTemplates in Frameworks */ = {isa = PBXBuildFile; productRef = 4E15ABF42D75F96400FB7917 /* CTTemplates */; };
 		4E5CB4262D71FDCF006EF06C /* CoachmarkScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CB4252D71FDC2006EF06C /* CoachmarkScreenViewController.swift */; };
-		4E8D3CE12D6EFCBF0034F181 /* CoachmarkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8D3CE02D6EFCBF0034F181 /* CoachmarkManager.swift */; };
-		4E98D4352D6C4F1A00FC495B /* CoachmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E98D4342D6C4F1A00FC495B /* CoachmarkView.swift */; };
 		4EB5CE1829AA823A00F8992F /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB5CE1729AA823A00F8992F /* HomeScreenViewController.swift */; };
 		4EBF34962BEB939100A11A4C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EBF34942BEB939100A11A4C /* Main.storyboard */; };
 		4EF3492D29487F23006F4170 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF3492C29487F23006F4170 /* AppDelegate.swift */; };
@@ -73,10 +71,7 @@
 		4E04D46E294C89CD008F5291 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		4E04D471294C89CD008F5291 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		4E04D473294C89CD008F5291 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4E099C702D72E204001BD2D6 /* CoachmarkScreenUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachmarkScreenUI.swift; sourceTree = "<group>"; };
 		4E5CB4252D71FDC2006EF06C /* CoachmarkScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachmarkScreenViewController.swift; sourceTree = "<group>"; };
-		4E8D3CE02D6EFCBF0034F181 /* CoachmarkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachmarkManager.swift; sourceTree = "<group>"; };
-		4E98D4342D6C4F1A00FC495B /* CoachmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachmarkView.swift; sourceTree = "<group>"; };
 		4E9C456A2A611960003E8C52 /* NotificationService.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotificationService.entitlements; sourceTree = "<group>"; };
 		4EB5CE1729AA823A00F8992F /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
 		4EBF34952BEB939100A11A4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -125,6 +120,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BDAF5D44638EDED5CA19655 /* Pods_push.framework in Frameworks */,
+				4E15ABF52D75F96400FB7917 /* CTTemplates in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,9 +197,6 @@
 				4EF3493729487F25006F4170 /* LaunchScreen.storyboard */,
 				4EF3493A29487F25006F4170 /* Info.plist */,
 				4EB5CE1729AA823A00F8992F /* HomeScreenViewController.swift */,
-				4E98D4342D6C4F1A00FC495B /* CoachmarkView.swift */,
-				4E8D3CE02D6EFCBF0034F181 /* CoachmarkManager.swift */,
-				4E099C702D72E204001BD2D6 /* CoachmarkScreenUI.swift */,
 			);
 			path = push;
 			sourceTree = "<group>";
@@ -312,6 +305,9 @@
 				Base,
 			);
 			mainGroup = 4EF3492029487F23006F4170;
+			packageReferences = (
+				4E15ABF32D75F96400FB7917 /* XCRemoteSwiftPackageReference "clevertap-custom-templates-ios" */,
+			);
 			productRefGroup = 4EF3492A29487F23006F4170 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -460,9 +456,6 @@
 			files = (
 				4EF3493129487F23006F4170 /* ViewController.swift in Sources */,
 				4EB5CE1829AA823A00F8992F /* HomeScreenViewController.swift in Sources */,
-				4E8D3CE12D6EFCBF0034F181 /* CoachmarkManager.swift in Sources */,
-				4E98D4352D6C4F1A00FC495B /* CoachmarkView.swift in Sources */,
-				4E099C712D72E204001BD2D6 /* CoachmarkScreenUI.swift in Sources */,
 				4EF3492D29487F23006F4170 /* AppDelegate.swift in Sources */,
 				4E5CB4262D71FDCF006EF06C /* CoachmarkScreenViewController.swift in Sources */,
 				4EF3492F29487F23006F4170 /* SceneDelegate.swift in Sources */,
@@ -759,6 +752,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -792,6 +786,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -846,6 +841,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4E15ABF32D75F96400FB7917 /* XCRemoteSwiftPackageReference "clevertap-custom-templates-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/CustomTemplates-CT/clevertap-custom-templates-ios.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4E15ABF42D75F96400FB7917 /* CTTemplates */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4E15ABF32D75F96400FB7917 /* XCRemoteSwiftPackageReference "clevertap-custom-templates-ios" */;
+			productName = CTTemplates;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4EF3492129487F23006F4170 /* Project object */;
 }

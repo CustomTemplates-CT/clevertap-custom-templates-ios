@@ -43,7 +43,7 @@ class HomeScreenViewController: UIViewController, CleverTapInboxViewControllerDe
     }
     
     @IBAction func AppInboxButton(_ sender: Any) {
-        CleverTap.sharedInstance()?.recordEvent("Karthiks App Inbox Event")
+        CleverTap.sharedInstance()?.recordEvent("App Inbox Event")
         self.showToast(message: "Event Pushed!", font: .systemFont(ofSize: 12.0))
         showAppInbox()
     }
