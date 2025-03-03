@@ -43,7 +43,7 @@ class CoachmarkScreenViewController: UIViewController, CleverTapDisplayUnitDeleg
     
     func prepareDisplayView(_ unit: CleverTapDisplayUnit) {
         if let jsonData = unit.json,
-           let customKV = jsonData["custom_kv"] as? String {
+           let customKV = jsonData["custom_kv"] as? [String: Any]  {
             CoachmarkManager.shared.showCoachmarks(fromJson: customKV, in: self.view)
         } else {
             print("Failed to get JSON data for Display Unit")
