@@ -70,13 +70,38 @@ class CoachmarkView: UIView {
         buttonsContainer.distribution = .fillEqually
         buttonsContainer.spacing = 10
         
+//        let skipButton = UIButton(type: .system)
+//        var skipConfig = UIButton.Configuration.filled()
+//        skipConfig.baseBackgroundColor = UIColor(hex: skipButtonBackgroundColor)?.withAlphaComponent(0.3)
+//        skipConfig.baseForegroundColor = UIColor(hex: skipButtonTextColor)
+//        skipConfig.cornerStyle = .medium
+//        skipConfig.title = skipButtonText
+//        skipButton.configuration = skipConfig
+//        skipButton.addTarget(self, action: #selector(skipTapped), for: .touchUpInside)
+//        skipButton.layer.borderColor = UIColor.black.cgColor // Change color as needed
+//        skipButton.layer.borderWidth = 1.5
+//        skipButton.layer.cornerRadius = 8
+//        skipButton.layer.shadowColor = UIColor.black.cgColor
+//        skipButton.layer.shadowOffset = CGSize(width: 0, height: 2)
+//        skipButton.layer.shadowRadius = 4
+//        skipButton.layer.shadowOpacity = 0.3
+//        skipButton.layer.masksToBounds = false
+        
         let skipButton = UIButton(type: .system)
-        var skipConfig = UIButton.Configuration.filled()
-        skipConfig.baseBackgroundColor = UIColor(hex: skipButtonBackgroundColor)?.withAlphaComponent(0.3)
-        skipConfig.baseForegroundColor = UIColor(hex: skipButtonTextColor)
-        skipConfig.cornerStyle = .medium
-        skipConfig.title = skipButtonText
-        skipButton.configuration = skipConfig
+        if #available(iOS 15.0, *) {
+            var skipConfig = UIButton.Configuration.filled()
+            skipConfig.baseBackgroundColor = UIColor(hex: skipButtonBackgroundColor)?.withAlphaComponent(0.3)
+            skipConfig.baseForegroundColor = UIColor(hex: skipButtonTextColor)
+            skipConfig.cornerStyle = .medium
+            skipConfig.title = skipButtonText
+            skipButton.configuration = skipConfig
+        } else {
+            skipButton.backgroundColor = UIColor(hex: skipButtonBackgroundColor)?.withAlphaComponent(0.3)
+            skipButton.setTitleColor(UIColor(hex: skipButtonTextColor), for: .normal)
+            skipButton.setTitle(skipButtonText, for: .normal)
+        }
+
+        // Common properties for all iOS versions
         skipButton.addTarget(self, action: #selector(skipTapped), for: .touchUpInside)
         skipButton.layer.borderColor = UIColor.black.cgColor // Change color as needed
         skipButton.layer.borderWidth = 1.5
