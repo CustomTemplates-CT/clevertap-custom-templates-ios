@@ -10,7 +10,7 @@ public class CoachmarkManager {
     
     private init() {}
     
-    public func showCoachmarks(fromJson json: Any, in parentView: UIView) {
+    public func showCoachmarks(fromJson json: Any, in parentView: UIView, onComplete: @escaping () -> Void) {
         self.parentView = parentView
         self.currentCoachmarkIndex = 0
         
@@ -73,11 +73,12 @@ public class CoachmarkManager {
         
         print("positiveButtonText1: \(positiveButtonText)")
         
-        showNextCoachmark(positiveButtonText: positiveButtonText, skipButtonText: skipButtonText, positiveButtonBackgroundColor: positiveButtonBackgroundColor, skipButtonBackgroundColor: skipButtonBackgroundColor, positiveButtonTextColor: positiveButtonTextColor, skipButtonTextColor: skipButtonTextColor, finalButtonText: finalButtonText)
+        showNextCoachmark(positiveButtonText: positiveButtonText, skipButtonText: skipButtonText, positiveButtonBackgroundColor: positiveButtonBackgroundColor, skipButtonBackgroundColor: skipButtonBackgroundColor, positiveButtonTextColor: positiveButtonTextColor, skipButtonTextColor: skipButtonTextColor, finalButtonText: finalButtonText, onComplete: onComplete)
     }
     
-    private func showNextCoachmark(positiveButtonText: String, skipButtonText: String, positiveButtonBackgroundColor: String, skipButtonBackgroundColor:String, positiveButtonTextColor: String, skipButtonTextColor: String, finalButtonText: String) {
+    private func showNextCoachmark(positiveButtonText: String, skipButtonText: String, positiveButtonBackgroundColor: String, skipButtonBackgroundColor:String, positiveButtonTextColor: String, skipButtonTextColor: String, finalButtonText: String, onComplete: @escaping () -> Void) {
         guard currentCoachmarkIndex < coachmarksData.count, let parentView = self.parentView else {
+            onComplete()
             return
         }
         
@@ -105,7 +106,7 @@ public class CoachmarkManager {
             coachmark.onNext = { [weak self, weak coachmark] in
                 coachmark?.removeFromSuperview()
                 self?.currentCoachmarkIndex += 1
-                self?.showNextCoachmark(positiveButtonText: positiveButtonText, skipButtonText: skipButtonText, positiveButtonBackgroundColor: positiveButtonBackgroundColor, skipButtonBackgroundColor: skipButtonBackgroundColor, positiveButtonTextColor: positiveButtonTextColor, skipButtonTextColor: skipButtonTextColor, finalButtonText: finalButtonText)
+                self?.showNextCoachmark(positiveButtonText: positiveButtonText, skipButtonText: skipButtonText, positiveButtonBackgroundColor: positiveButtonBackgroundColor, skipButtonBackgroundColor: skipButtonBackgroundColor, positiveButtonTextColor: positiveButtonTextColor, skipButtonTextColor: skipButtonTextColor, finalButtonText: finalButtonText, onComplete: onComplete)
             }
             
             coachmark.onSkip = { [weak self, weak coachmark] in
@@ -116,7 +117,7 @@ public class CoachmarkManager {
             parentView.addSubview(coachmark)
         } else {
             currentCoachmarkIndex += 1
-            showNextCoachmark(positiveButtonText: positiveButtonText, skipButtonText: skipButtonText, positiveButtonBackgroundColor: positiveButtonBackgroundColor, skipButtonBackgroundColor: skipButtonBackgroundColor, positiveButtonTextColor: positiveButtonTextColor, skipButtonTextColor: skipButtonTextColor, finalButtonText: finalButtonText)
+            showNextCoachmark(positiveButtonText: positiveButtonText, skipButtonText: skipButtonText, positiveButtonBackgroundColor: positiveButtonBackgroundColor, skipButtonBackgroundColor: skipButtonBackgroundColor, positiveButtonTextColor: positiveButtonTextColor, skipButtonTextColor: skipButtonTextColor, finalButtonText: finalButtonText, onComplete: onComplete)
         }
     }
     
