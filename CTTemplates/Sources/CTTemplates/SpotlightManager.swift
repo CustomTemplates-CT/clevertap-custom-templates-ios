@@ -94,41 +94,45 @@ public class SpotlightManager {
         showNextSpotlight(onComplete: onComplete)
     }
     
-    func showNextSpotlight(onComplete: @escaping () -> Void) {
+    public func showNextSpotlight(onComplete: @escaping () -> Void) {
         guard currentSpotlightIndex < spotlightData.count,
               let parentView = self.parentView else {
             onComplete()
             return
         }
-        
+
         let step = spotlightData[currentSpotlightIndex]
         if let targetId = step["targetViewId"] as? String,
            let targetView = targets[targetId] {
-            
+
             let title = step["title"] as? String ?? ""
             let subtitle = step["subtitle"] as? String ?? ""
-            
+
             let spotlightStep = SpotlightStep(
                 targetView: targetView,
                 title: title,
                 subtitle: subtitle,
                 shape: spotlightShape
             )
-            
-            let spotlightView = SpotlightView(step: spotlightStep)
-            spotlightView.titleLabel.textColor = textColor
-            spotlightView.subtitleLabel.textColor = textColor
-            
-            spotlightView.onDismiss = { [weak self, weak spotlightView] in
-                spotlightView?.removeFromSuperview()
-                self?.currentSpotlightIndex += 1
-                self?.showNextSpotlight(onComplete: onComplete)
+
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                let spotlightView = SpotlightView(step: spotlightStep)
+                spotlightView.titleLabel.textColor = self.textColor
+                spotlightView.subtitleLabel.textColor = self.textColor
+
+                spotlightView.onDismiss = { [weak self, weak spotlightView] in
+                    spotlightView?.removeFromSuperview()
+                    self?.currentSpotlightIndex += 1
+                    self?.showNextSpotlight(onComplete: onComplete)
+                }
+
+                parentView.addSubview(spotlightView)
             }
-            
-            parentView.addSubview(spotlightView)
         } else {
             currentSpotlightIndex += 1
             showNextSpotlight(onComplete: onComplete)
         }
     }
+
 }
