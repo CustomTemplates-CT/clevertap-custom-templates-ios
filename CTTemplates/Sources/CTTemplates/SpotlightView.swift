@@ -159,7 +159,7 @@ class Spotlight {
         showStep()
     }
     
-    static func showStep() {
+    private func showStep() {
         guard currentIndex < steps.count else { return }
         let step = steps[currentIndex]
 
