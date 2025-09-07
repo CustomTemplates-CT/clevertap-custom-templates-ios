@@ -1,5 +1,6 @@
 import UIKit
 import CleverTapSDK
+import CTTemplates
 
 class TooltipsScreenViewController: UIViewController, CleverTapDisplayUnitDelegate {
     

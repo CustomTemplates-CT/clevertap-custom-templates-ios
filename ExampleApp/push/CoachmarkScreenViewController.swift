@@ -14,8 +14,13 @@ class CoachmarkScreenViewController: UIViewController, CleverTapDisplayUnitDeleg
     @IBOutlet var categoriesImageViews: [UIImageView]!
     @IBOutlet var recomendedImageViews: [UIImageView]!
     @IBOutlet weak var searchBar: UISearchBar!
+    private var cartIcon: UIImageView!
+    private var helpIcon: UIImageView!
+    private var settingsIcon: UIImageView!
     
     private let stackView = UIStackView()
+    
+    var coachmarkTargets: [String: UIView] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,16 +28,21 @@ class CoachmarkScreenViewController: UIViewController, CleverTapDisplayUnitDeleg
         CleverTap.autoIntegrate()
         CleverTap.setDebugLevel(3)
         
-        profileImage.accessibilityIdentifier = "profile_image"
-        searchBar.accessibilityIdentifier = "search"
-        
         setupBottomBar()
         setupProfileAndBannerImages()
         setupCardViews()
         
+        coachmarkTargets = [
+            "profile_image": profileImage,
+            "search": searchBar,
+            "cart": cartIcon,
+            "support_help": helpIcon,
+            "settings": settingsIcon
+        ]
+        
         CleverTap.sharedInstance()?.setDisplayUnitDelegate(self)
         
-//        CleverTap.sharedInstance()?.recordEvent("coachmarks_nd")
+        //        CleverTap.sharedInstance()?.recordEvent("coachmarks_nd")
         
         CleverTap.sharedInstance()?.recordEvent("CoachmarksND")
     }
@@ -48,13 +58,13 @@ class CoachmarkScreenViewController: UIViewController, CleverTapDisplayUnitDeleg
            let customKV = jsonData["custom_kv"] as? [String: Any] {
             print("Native Display Data: \(customKV)")
             CleverTap.sharedInstance()?.recordDisplayUnitViewedEvent(forID: unit.unitID!)
-            CoachmarkManager.shared.showCoachmarks(fromJson: customKV, in: self.view){
+            CoachmarkManager.shared.showCoachmarks(fromJson: customKV, in: self.view, targets: self.coachmarkTargets){
                 CleverTap.sharedInstance()?.recordDisplayUnitClickedEvent(forID: unit.unitID!)
             }
         } else {
             print("Failed to get JSON data for Display Unit")
         }
-
+        
     }
     
     private func setupBottomBar() {
@@ -70,15 +80,12 @@ class CoachmarkScreenViewController: UIViewController, CleverTapDisplayUnitDeleg
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         let homeIcon = createButton(named: "house.fill", action: #selector(homeClicked))
-        let cartIcon = createIcon(named: "cart.fill")
-        let helpIcon = createIcon(named: "questionmark.circle.fill")
-        let settingsIcon = createIcon(named: "gearshape.fill")
+        cartIcon = createIcon(named: "cart.fill")
+        helpIcon = createIcon(named: "questionmark.circle.fill")
+        settingsIcon = createIcon(named: "gearshape.fill")
         
         
         homeIcon.accessibilityIdentifier = "home"
-        cartIcon.accessibilityIdentifier = "cart"
-        helpIcon.accessibilityIdentifier = "support_help"
-        settingsIcon.accessibilityIdentifier = "settings"
         
         [homeIcon, cartIcon, helpIcon, settingsIcon].forEach { stackView.addArrangedSubview($0) }
         
@@ -172,16 +179,3 @@ extension UIView {
         self.layer.masksToBounds = false
     }
 }
-
-
-
-// ************************************************* SWIFTUI CODE *************************************************
-//
-//        let swiftUIView = CoachmarkScreenUI()
-//        let hostingController = UIHostingController(rootView: swiftUIView)
-//
-//        addChild(hostingController)
-//        hostingController.view.frame = view.bounds
-//        hostingController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-//        view.addSubview(hostingController.view)
-//        hostingController.didMove(toParent: self)
