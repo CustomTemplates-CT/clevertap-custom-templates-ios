@@ -13,6 +13,7 @@ struct SpotlightStep {
     let shape: SpotlightShape
 }
 
+@MainActor
 class SpotlightView: UIView {
     
     private var step: SpotlightStep
@@ -144,6 +145,7 @@ class SpotlightView: UIView {
     }
 }
 
+@MainActor
 class Spotlight {
     
     private static var steps: [SpotlightStep] = []
