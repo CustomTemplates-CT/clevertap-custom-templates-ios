@@ -3,7 +3,7 @@ import UIKit
 @MainActor
 public class SpotlightManager {
     
-    public let shared = SpotlightManager()
+    public static let shared = SpotlightManager()
     
     var spotlightData: [[String: Any]] = []
     var currentSpotlightIndex: Int = 0
@@ -12,7 +12,7 @@ public class SpotlightManager {
     var textColor: UIColor = .white
     var spotlightShape: SpotlightShape = .circle
     
-    init() {}
+    private init() {}
     
     public func showSpotlights(
         fromJson json: Any,

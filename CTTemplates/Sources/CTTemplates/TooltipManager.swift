@@ -3,14 +3,14 @@ import UIKit
 @MainActor
 public class TooltipManager {
     
-    public  let shared = TooltipManager()
+    public static let shared = TooltipManager()
     
     var tooltipsData: [[String: Any]] = []
     var currentTooltipIndex: Int = 0
     var parentView: UIView?
     var targets: [String: UIView] = [:]
     
-    init() {}
+    private init() {}
     
     /// Show tooltips from JSON
     public func showTooltips(fromJson json: Any, in parentView: UIView, targets: [String: UIView], onComplete: @escaping () -> Void) {
