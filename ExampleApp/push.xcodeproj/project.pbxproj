@@ -17,6 +17,9 @@
 		4E04D476294C89CD008F5291 /* NotificationContentDemo.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4E04D468294C89CD008F5291 /* NotificationContentDemo.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4E15ABF52D75F96400FB7917 /* CTTemplates in Frameworks */ = {isa = PBXBuildFile; productRef = 4E15ABF42D75F96400FB7917 /* CTTemplates */; };
 		4E5CB4262D71FDCF006EF06C /* CoachmarkScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CB4252D71FDC2006EF06C /* CoachmarkScreenViewController.swift */; };
+		4E5D5ABD2E6D61DE00A3F015 /* SpotlightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5D5ABC2E6D61DC00A3F015 /* SpotlightView.swift */; };
+		4E5D5ABF2E6D67D900A3F015 /* SpotlightsScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5D5ABE2E6D67D200A3F015 /* SpotlightsScreenViewController.swift */; };
+		4E5D5AC12E6D8C1400A3F015 /* SpotlightManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5D5AC02E6D8C1100A3F015 /* SpotlightManager.swift */; };
 		4E8F13402E6B13D00040D1CB /* TooltipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8F133F2E6B13C90040D1CB /* TooltipView.swift */; };
 		4E8F13422E6B27800040D1CB /* TooltipsScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8F13412E6B277C0040D1CB /* TooltipsScreenViewController.swift */; };
 		4EB5CE1829AA823A00F8992F /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB5CE1729AA823A00F8992F /* HomeScreenViewController.swift */; };
@@ -75,6 +78,9 @@
 		4E04D471294C89CD008F5291 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		4E04D473294C89CD008F5291 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4E5CB4252D71FDC2006EF06C /* CoachmarkScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachmarkScreenViewController.swift; sourceTree = "<group>"; };
+		4E5D5ABC2E6D61DC00A3F015 /* SpotlightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotlightView.swift; sourceTree = "<group>"; };
+		4E5D5ABE2E6D67D200A3F015 /* SpotlightsScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotlightsScreenViewController.swift; sourceTree = "<group>"; };
+		4E5D5AC02E6D8C1100A3F015 /* SpotlightManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotlightManager.swift; sourceTree = "<group>"; };
 		4E8F133F2E6B13C90040D1CB /* TooltipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TooltipView.swift; sourceTree = "<group>"; };
 		4E8F13412E6B277C0040D1CB /* TooltipsScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TooltipsScreenViewController.swift; sourceTree = "<group>"; };
 		4E9C456A2A611960003E8C52 /* NotificationService.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotificationService.entitlements; sourceTree = "<group>"; };
@@ -193,6 +199,9 @@
 		4EF3492B29487F23006F4170 /* push */ = {
 			isa = PBXGroup;
 			children = (
+				4E5D5AC02E6D8C1100A3F015 /* SpotlightManager.swift */,
+				4E5D5ABE2E6D67D200A3F015 /* SpotlightsScreenViewController.swift */,
+				4E5D5ABC2E6D61DC00A3F015 /* SpotlightView.swift */,
 				4EC3393E2E6C12E500977A3A /* TooltipManager.swift */,
 				4E8F13412E6B277C0040D1CB /* TooltipsScreenViewController.swift */,
 				4E8F133F2E6B13C90040D1CB /* TooltipView.swift */,
@@ -464,7 +473,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				4EF3493129487F23006F4170 /* ViewController.swift in Sources */,
+				4E5D5ABF2E6D67D900A3F015 /* SpotlightsScreenViewController.swift in Sources */,
 				4EB5CE1829AA823A00F8992F /* HomeScreenViewController.swift in Sources */,
+				4E5D5ABD2E6D61DE00A3F015 /* SpotlightView.swift in Sources */,
+				4E5D5AC12E6D8C1400A3F015 /* SpotlightManager.swift in Sources */,
 				4E8F13402E6B13D00040D1CB /* TooltipView.swift in Sources */,
 				4EF3492D29487F23006F4170 /* AppDelegate.swift in Sources */,
 				4E5CB4262D71FDCF006EF06C /* CoachmarkScreenViewController.swift in Sources */,

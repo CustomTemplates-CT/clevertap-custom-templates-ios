@@ -10,6 +10,10 @@ import CleverTapSDK
 
 class ViewController: UIViewController, UNUserNotificationCenterDelegate, CleverTapDisplayUnitDelegate {
     
+    @IBOutlet weak var coachmarkbtn: UIButton!
+    
+    @IBOutlet weak var testLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         CleverTap.autoIntegrate()
@@ -17,15 +21,9 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate, Clever
         CleverTap.sharedInstance()?.setDisplayUnitDelegate(self)
     }
     
-    
-    @objc func homeClicked() {
-        print("Home icon clicked")
-    }
-    
     @IBAction func goToCoachmarkScreen(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let coachmarkVC = storyboard.instantiateViewController(withIdentifier: "CoachmarkScreenViewController") as? CoachmarkScreenViewController {
-            // Push the HomeScreenViewController
             self.navigationController?.pushViewController(coachmarkVC, animated: true)
         }
     }
@@ -36,6 +34,14 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate, Clever
             self.navigationController?.pushViewController(tooltipsVC, animated: true)
         }
     }
+    
+    @IBAction func goToSpotlightsScreen(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let spotlightsVC = storyboard.instantiateViewController(withIdentifier: "SpotlightsScreenViewController") as? SpotlightsScreenViewController {
+            self.navigationController?.pushViewController(spotlightsVC, animated: true)
+        }
+    }
+    
 }
 
 extension ViewController : UITextFieldDelegate {
