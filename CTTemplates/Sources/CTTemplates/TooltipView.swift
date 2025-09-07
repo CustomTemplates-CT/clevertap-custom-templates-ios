@@ -125,7 +125,7 @@ final class TooltipView: UIView {
         path.fill()
     }
     
-    func show(message: String, for target: UIView, in container: UIView, gravity requestedGravity: TooltipGravity, bubbleColor: UIColor = .systemRed, bubbleTextColor: UIColor = .white, completion: (() -> Void)? = nil) {
+    static func show(message: String, for target: UIView, in container: UIView, gravity requestedGravity: TooltipGravity, bubbleColor: UIColor = .systemRed, bubbleTextColor: UIColor = .white, completion: (() -> Void)? = nil) {
         container.layoutIfNeeded()
         target.superview?.layoutIfNeeded()
         
