@@ -15,9 +15,9 @@ struct SpotlightStep {
 
 class SpotlightView: UIView {
     
-    var step: SpotlightStep
-    var targetFrame: CGRect = .zero
-    var shapeFrame: CGRect = .zero
+    private var step: SpotlightStep
+    private var targetFrame: CGRect = .zero
+    private var shapeFrame: CGRect = .zero
     
     let titleLabel = UILabel()
     let subtitleLabel = UILabel()
@@ -29,10 +29,7 @@ class SpotlightView: UIView {
         self.step = step
         
         if let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) {
-            DispatchQueue.main.async {
-                self.targetFrame = step.targetView.convert(step.targetView.bounds, to: window)
-                self.setNeedsDisplay()
-            }
+            self.targetFrame = step.targetView.convert(step.targetView.bounds, to: window)
         }
         
         super.init(frame: UIScreen.main.bounds)
@@ -47,7 +44,7 @@ class SpotlightView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupLabels(title: String, subtitle: String) {
+    private func setupLabels(title: String, subtitle: String) {
         titleLabel.text = title
         titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
         titleLabel.textColor = .white
@@ -61,7 +58,7 @@ class SpotlightView: UIView {
         addSubview(subtitleLabel)
     }
     
-    func positionLabels() {
+    private func positionLabels() {
         let screenBounds = UIScreen.main.bounds
         let padding: CGFloat = 12
         
@@ -149,34 +146,32 @@ class SpotlightView: UIView {
 
 class Spotlight {
     
-    var steps: [SpotlightStep] = []
-    var currentIndex = 0
+    private static var steps: [SpotlightStep] = []
+    private static var currentIndex = 0
     
-    func show(steps: [SpotlightStep]) {
+    static func show(steps: [SpotlightStep]) {
         guard !steps.isEmpty else { return }
         self.steps = steps
         self.currentIndex = 0
         showStep()
     }
     
-    private func showStep() {
+    private static func showStep() {
         guard currentIndex < steps.count else { return }
         let step = steps[currentIndex]
-
-        DispatchQueue.main.async {
-            if let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) {
-                let spotlight = SpotlightView(step: step)
-                spotlight.onDismiss = {
-                    self.currentIndex += 1
-                    self.showStep()
-                }
-                window.addSubview(spotlight)
+        
+        if let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) {
+            let spotlight = SpotlightView(step: step)
+            spotlight.onDismiss = {
+                currentIndex += 1
+                showStep()
             }
+            window.addSubview(spotlight)
         }
     }
     
     // Convenience for single step
-    func show(over view: UIView, title: String, subtitle: String, shape: SpotlightShape = .circle) {
+    static func show(over view: UIView, title: String, subtitle: String, shape: SpotlightShape = .circle) {
         let step = SpotlightStep(targetView: view, title: title, subtitle: subtitle, shape: shape)
         show(steps: [step])
     }

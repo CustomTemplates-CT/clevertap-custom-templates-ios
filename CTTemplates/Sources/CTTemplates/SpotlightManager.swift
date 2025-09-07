@@ -5,12 +5,12 @@ public class SpotlightManager {
     
     public static let shared = SpotlightManager()
     
-    var spotlightData: [[String: Any]] = []
-    var currentSpotlightIndex: Int = 0
-    var parentView: UIView?
-    var targets: [String: UIView] = [:]
-    var textColor: UIColor = .white
-    var spotlightShape: SpotlightShape = .circle
+    private var spotlightData: [[String: Any]] = []
+    private var currentSpotlightIndex: Int = 0
+    private var parentView: UIView?
+    private var targets: [String: UIView] = [:]
+    private var textColor: UIColor = .white
+    private var spotlightShape: SpotlightShape = .circle
     
     private init() {}
     
@@ -57,7 +57,7 @@ public class SpotlightManager {
         
         // Extract text color
         if let colorHex = jsonDict["nd_text_color"] as? String {
-            self.textColor = UIColor(ct_hex: colorHex) ?? .white
+            self.textColor = UIColor(hex: colorHex) ?? .white
         }
         
         // Extract shape
@@ -94,45 +94,42 @@ public class SpotlightManager {
         showNextSpotlight(onComplete: onComplete)
     }
     
-    public func showNextSpotlight(onComplete: @escaping () -> Void) {
+    private func showNextSpotlight(onComplete: @escaping () -> Void) {
         guard currentSpotlightIndex < spotlightData.count,
               let parentView = self.parentView else {
             onComplete()
             return
         }
-
+        
         let step = spotlightData[currentSpotlightIndex]
         if let targetId = step["targetViewId"] as? String,
            let targetView = targets[targetId] {
-
+            
             let title = step["title"] as? String ?? ""
             let subtitle = step["subtitle"] as? String ?? ""
-
+            
             let spotlightStep = SpotlightStep(
                 targetView: targetView,
                 title: title,
                 subtitle: subtitle,
                 shape: spotlightShape
             )
-
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                let spotlightView = SpotlightView(step: spotlightStep)
-                spotlightView.titleLabel.textColor = self.textColor
-                spotlightView.subtitleLabel.textColor = self.textColor
-
-                spotlightView.onDismiss = { [weak self, weak spotlightView] in
-                    spotlightView?.removeFromSuperview()
-                    self?.currentSpotlightIndex += 1
-                    self?.showNextSpotlight(onComplete: onComplete)
-                }
-
-                parentView.addSubview(spotlightView)
+            
+            let spotlightView = SpotlightView(step: spotlightStep)
+            spotlightView.titleLabel.textColor = textColor
+            spotlightView.subtitleLabel.textColor = textColor
+            
+            spotlightView.onDismiss = { [weak self, weak spotlightView] in
+                spotlightView?.removeFromSuperview()
+                self?.currentSpotlightIndex += 1
+                self?.showNextSpotlight(onComplete: onComplete)
             }
+            
+            parentView.addSubview(spotlightView)
         } else {
             currentSpotlightIndex += 1
             showNextSpotlight(onComplete: onComplete)
         }
     }
-
 }
+
