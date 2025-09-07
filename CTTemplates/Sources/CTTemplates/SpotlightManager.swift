@@ -3,16 +3,16 @@ import UIKit
 @MainActor
 public class SpotlightManager {
     
-    public static let shared = SpotlightManager()
+    public let shared = SpotlightManager()
     
-    private var spotlightData: [[String: Any]] = []
-    private var currentSpotlightIndex: Int = 0
-    private var parentView: UIView?
-    private var targets: [String: UIView] = [:]
-    private var textColor: UIColor = .white
-    private var spotlightShape: SpotlightShape = .circle
+    var spotlightData: [[String: Any]] = []
+    var currentSpotlightIndex: Int = 0
+    var parentView: UIView?
+    var targets: [String: UIView] = [:]
+    var textColor: UIColor = .white
+    var spotlightShape: SpotlightShape = .circle
     
-    private init() {}
+    init() {}
     
     public func showSpotlights(
         fromJson json: Any,
@@ -94,7 +94,7 @@ public class SpotlightManager {
         showNextSpotlight(onComplete: onComplete)
     }
     
-    private func showNextSpotlight(onComplete: @escaping () -> Void) {
+    func showNextSpotlight(onComplete: @escaping () -> Void) {
         guard currentSpotlightIndex < spotlightData.count,
               let parentView = self.parentView else {
             onComplete()

@@ -3,14 +3,14 @@ import UIKit
 @MainActor
 public class TooltipManager {
     
-    public static let shared = TooltipManager()
+    public  let shared = TooltipManager()
     
-    private var tooltipsData: [[String: Any]] = []
-    private var currentTooltipIndex: Int = 0
-    private var parentView: UIView?
-    private var targets: [String: UIView] = [:]
+    var tooltipsData: [[String: Any]] = []
+    var currentTooltipIndex: Int = 0
+    var parentView: UIView?
+    var targets: [String: UIView] = [:]
     
-    private init() {}
+    init() {}
     
     /// Show tooltips from JSON
     public func showTooltips(fromJson json: Any, in parentView: UIView, targets: [String: UIView], onComplete: @escaping () -> Void) {
@@ -88,7 +88,7 @@ public class TooltipManager {
         showNextTooltip(onComplete: onComplete)
     }
     
-    private func showNextTooltip(onComplete: @escaping () -> Void) {
+    func showNextTooltip(onComplete: @escaping () -> Void) {
         guard currentTooltipIndex < tooltipsData.count, let parentView = self.parentView else {
             onComplete()
             return
@@ -113,7 +113,7 @@ public class TooltipManager {
         }
     }
     
-    private func findViewByIdentifier(_ identifier: String, in view: UIView) -> UIView? {
+    func findViewByIdentifier(_ identifier: String, in view: UIView) -> UIView? {
         return targets[identifier]
     }
 }

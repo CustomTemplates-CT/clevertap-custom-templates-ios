@@ -13,9 +13,9 @@ final class TooltipView: UIView {
     var arrowHeight: CGFloat = 12
     var contentInsets = UIEdgeInsets(top: 8, left: 12, bottom: 8, right: 12)
     var spacingFromTarget: CGFloat = 8
-    private var gravity: TooltipGravity = .right
+    var gravity: TooltipGravity = .right
     
-    private let label = UILabel()
+    let label = UILabel()
     
     init(message: String, gravity: TooltipGravity, bubbleColor: UIColor = .systemRed, bubbleTextColor: UIColor = .white) {
         self.bubbleColor = bubbleColor
@@ -125,7 +125,7 @@ final class TooltipView: UIView {
         path.fill()
     }
     
-    static func show(message: String, for target: UIView, in container: UIView, gravity requestedGravity: TooltipGravity, bubbleColor: UIColor = .systemRed, bubbleTextColor: UIColor = .white, completion: (() -> Void)? = nil) {
+    func show(message: String, for target: UIView, in container: UIView, gravity requestedGravity: TooltipGravity, bubbleColor: UIColor = .systemRed, bubbleTextColor: UIColor = .white, completion: (() -> Void)? = nil) {
         container.layoutIfNeeded()
         target.superview?.layoutIfNeeded()
         

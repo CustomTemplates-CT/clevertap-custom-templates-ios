@@ -15,9 +15,9 @@ struct SpotlightStep {
 
 class SpotlightView: UIView {
     
-    private var step: SpotlightStep
-    private var targetFrame: CGRect = .zero
-    private var shapeFrame: CGRect = .zero
+    var step: SpotlightStep
+    var targetFrame: CGRect = .zero
+    var shapeFrame: CGRect = .zero
     
     let titleLabel = UILabel()
     let subtitleLabel = UILabel()
@@ -44,7 +44,7 @@ class SpotlightView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setupLabels(title: String, subtitle: String) {
+    func setupLabels(title: String, subtitle: String) {
         titleLabel.text = title
         titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
         titleLabel.textColor = .white
@@ -58,7 +58,7 @@ class SpotlightView: UIView {
         addSubview(subtitleLabel)
     }
     
-    private func positionLabels() {
+    func positionLabels() {
         let screenBounds = UIScreen.main.bounds
         let padding: CGFloat = 12
         
@@ -146,17 +146,17 @@ class SpotlightView: UIView {
 
 class Spotlight {
     
-    private static var steps: [SpotlightStep] = []
-    private static var currentIndex = 0
+    var steps: [SpotlightStep] = []
+    var currentIndex = 0
     
-    static func show(steps: [SpotlightStep]) {
+    func show(steps: [SpotlightStep]) {
         guard !steps.isEmpty else { return }
         self.steps = steps
         self.currentIndex = 0
         showStep()
     }
     
-    private static func showStep() {
+    func showStep() {
         guard currentIndex < steps.count else { return }
         let step = steps[currentIndex]
         
@@ -171,7 +171,7 @@ class Spotlight {
     }
     
     // Convenience for single step
-    static func show(over view: UIView, title: String, subtitle: String, shape: SpotlightShape = .circle) {
+    func show(over view: UIView, title: String, subtitle: String, shape: SpotlightShape = .circle) {
         let step = SpotlightStep(targetView: view, title: title, subtitle: subtitle, shape: shape)
         show(steps: [step])
     }
