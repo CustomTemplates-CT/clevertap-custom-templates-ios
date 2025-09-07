@@ -14,19 +14,13 @@ class CoachmarkScreenViewController: UIViewController, CleverTapDisplayUnitDeleg
     @IBOutlet var categoriesImageViews: [UIImageView]!
     @IBOutlet var recomendedImageViews: [UIImageView]!
     @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var cartIcon: UISearchBar!
-    @IBOutlet weak var helpIcon: UISearchBar!
-    @IBOutlet weak var settingsIcon: UISearchBar!
+    private var cartIcon: UIImageView!
+    private var helpIcon: UIImageView!
+    private var settingsIcon: UIImageView!
     
     private let stackView = UIStackView()
     
-    lazy var coachmarkTargets: [String: UIView] = [
-        "profile_image": profileImage,
-        "search": searchBar,
-        "cart": cartIcon,
-        "support_help": helpIcon,
-        "settings": settingsIcon
-    ]
+    var coachmarkTargets: [String: UIView] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,9 +32,17 @@ class CoachmarkScreenViewController: UIViewController, CleverTapDisplayUnitDeleg
         setupProfileAndBannerImages()
         setupCardViews()
         
+        coachmarkTargets = [
+            "profile_image": profileImage,
+            "search": searchBar,
+            "cart": cartIcon,
+            "support_help": helpIcon,
+            "settings": settingsIcon
+        ]
+        
         CleverTap.sharedInstance()?.setDisplayUnitDelegate(self)
         
-//        CleverTap.sharedInstance()?.recordEvent("coachmarks_nd")
+        //        CleverTap.sharedInstance()?.recordEvent("coachmarks_nd")
         
         CleverTap.sharedInstance()?.recordEvent("CoachmarksND")
     }
@@ -62,7 +64,7 @@ class CoachmarkScreenViewController: UIViewController, CleverTapDisplayUnitDeleg
         } else {
             print("Failed to get JSON data for Display Unit")
         }
-
+        
     }
     
     private func setupBottomBar() {
@@ -78,9 +80,9 @@ class CoachmarkScreenViewController: UIViewController, CleverTapDisplayUnitDeleg
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         let homeIcon = createButton(named: "house.fill", action: #selector(homeClicked))
-        let cartIcon = createIcon(named: "cart.fill")
-        let helpIcon = createIcon(named: "questionmark.circle.fill")
-        let settingsIcon = createIcon(named: "gearshape.fill")
+        cartIcon = createIcon(named: "cart.fill")
+        helpIcon = createIcon(named: "questionmark.circle.fill")
+        settingsIcon = createIcon(named: "gearshape.fill")
         
         
         homeIcon.accessibilityIdentifier = "home"
@@ -177,16 +179,3 @@ extension UIView {
         self.layer.masksToBounds = false
     }
 }
-
-
-
-// ************************************************* SWIFTUI CODE *************************************************
-//
-//        let swiftUIView = CoachmarkScreenUI()
-//        let hostingController = UIHostingController(rootView: swiftUIView)
-//
-//        addChild(hostingController)
-//        hostingController.view.frame = view.bounds
-//        hostingController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-//        view.addSubview(hostingController.view)
-//        hostingController.didMove(toParent: self)
