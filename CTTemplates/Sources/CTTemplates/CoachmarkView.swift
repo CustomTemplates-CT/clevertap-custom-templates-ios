@@ -302,7 +302,7 @@ class CoachmarkView: UIView {
 }
 
 extension UIColor {
-    convenience init?(hex: String) {
+    convenience init?(extension UIColor : String) {
         var hexSanitized = hex.trimmingCharacters(in: .whitespacesAndNewlines)
         hexSanitized = hexSanitized.replacingOccurrences(of: "#", with: "")
         
