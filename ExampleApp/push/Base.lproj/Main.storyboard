@@ -36,15 +36,27 @@
                                     <action selector="goToTooltipsScreen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3Jj-Ux-37G"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ERx-8L-Gp0">
+                                <rect key="frame" x="121" y="318" width="160" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Spotlights"/>
+                                <connections>
+                                    <action selector="goToSpotlightsScreen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jg9-dU-1Dd"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="MQS-Eu-l5H"/>
+                    <connections>
+                        <outlet property="coachmarkbtn" destination="npf-WP-5bb" id="Lgw-J2-6Fy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1049.6183206106871" y="3.5211267605633805"/>
+            <point key="canvasLocation" x="1049.2537313432836" y="3.432494279176201"/>
         </scene>
         <!--Home Screen View Controller-->
         <scene sceneID="hLj-Z1-u7z">
@@ -442,6 +454,63 @@
                 </scrollView>
             </objects>
             <point key="canvasLocation" x="3232.8358208955224" y="2.7459954233409607"/>
+        </scene>
+        <!--Spotlights Screen View Controller-->
+        <scene sceneID="KX7-VS-sYr">
+            <objects>
+                <viewController restorationIdentifier="SpotlightsScreenViewController" storyboardIdentifier="SpotlightsScreenViewController" id="DKh-DG-5Rk" userLabel="Spotlights Screen View Controller" customClass="SpotlightsScreenViewController" customModule="push" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TTl-Wz-6XT">
+                        <rect key="frame" x="0.0" y="0.0" width="402" height="874"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is Title 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ead-bn-loq" userLabel="This is Title 3">
+                                <rect key="frame" x="148.66666666666666" y="427" width="104.66666666666666" height="20"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="This is Title 3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qe7-vr-Pwa" userLabel="This is Title 4">
+                                <rect key="frame" x="16" y="819" width="108" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="This is Title 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Nj-TJ-3Sg">
+                                <rect key="frame" x="281" y="77" width="107" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="2ji-2e-d9Q"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="0Nj-TJ-3Sg" firstAttribute="top" secondItem="2ji-2e-d9Q" secondAttribute="top" constant="20" id="275-bH-LnJ"/>
+                            <constraint firstItem="Ead-bn-loq" firstAttribute="centerY" secondItem="TTl-Wz-6XT" secondAttribute="centerY" id="AkU-kD-wuh"/>
+                            <constraint firstItem="0Nj-TJ-3Sg" firstAttribute="leading" secondItem="2ji-2e-d9Q" secondAttribute="leading" constant="250" id="PNS-rD-ykI"/>
+                            <constraint firstItem="Qe7-vr-Pwa" firstAttribute="leading" secondItem="2ji-2e-d9Q" secondAttribute="leading" constant="20" id="WnS-3b-bgQ"/>
+                            <constraint firstItem="0Nj-TJ-3Sg" firstAttribute="trailing" secondItem="TTl-Wz-6XT" secondAttribute="trailingMargin" id="XGO-IZ-Kyl"/>
+                            <constraint firstItem="Qe7-vr-Pwa" firstAttribute="bottom" secondItem="2ji-2e-d9Q" secondAttribute="bottom" id="dSa-Gv-v5i"/>
+                            <constraint firstItem="Ead-bn-loq" firstAttribute="centerX" secondItem="TTl-Wz-6XT" secondAttribute="centerX" id="h1s-wS-Lfn"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="ZXK-Oq-QFB"/>
+                    <connections>
+                        <outlet property="TextView1" destination="Ead-bn-loq" id="okl-PW-ZdP"/>
+                        <outlet property="TextView2" destination="0Nj-TJ-3Sg" id="Ysc-nJ-qWL"/>
+                        <outlet property="TextView3" destination="Qe7-vr-Pwa" id="yqs-RG-GsM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xDz-mw-qAh" sceneMemberID="firstResponder"/>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" id="8Mh-7H-J76">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <viewLayoutGuide key="safeArea" id="VID-Zw-oIZ"/>
+                    <viewLayoutGuide key="contentLayoutGuide" id="Hrm-vN-7Ry"/>
+                    <viewLayoutGuide key="frameLayoutGuide" id="ReT-kd-BEZ"/>
+                </scrollView>
+            </objects>
+            <point key="canvasLocation" x="3981" y="3"/>
         </scene>
     </scenes>
     <resources>
