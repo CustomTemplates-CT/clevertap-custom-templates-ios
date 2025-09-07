@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Override point for customization after application launch.
         
         //                CleverTap.autoIntegrate()
+        CleverTap.sharedInstance()?.notifyApplicationLaunched(withOptions: nil)
         CleverTap.setDebugLevel(CleverTapLogLevel.debug.rawValue)
         
         registerForPush()
