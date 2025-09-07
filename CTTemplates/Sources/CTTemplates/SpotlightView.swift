@@ -160,13 +160,23 @@ class Spotlight {
         guard currentIndex < steps.count else { return }
         let step = steps[currentIndex]
         
-        if let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) {
-            let spotlight = SpotlightView(step: step)
-            spotlight.onDismiss = {
-                currentIndex += 1
-                showStep()
+//        if let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) {
+//            let spotlight = SpotlightView(step: step)
+//            spotlight.onDismiss = {
+//                currentIndex += 1
+//                showStep()
+//            }
+//            window.addSubview(spotlight)
+//        }
+        Task { @MainActor in
+            if let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) {
+                let spotlight = SpotlightView(step: step)
+                spotlight.onDismiss = { [weak self] in
+                    self?.currentIndex += 1
+                    self?.showStep()
+                }
+                window.addSubview(spotlight)
             }
-            window.addSubview(spotlight)
         }
     }
     
