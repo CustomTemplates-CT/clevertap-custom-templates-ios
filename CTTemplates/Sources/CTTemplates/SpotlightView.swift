@@ -396,24 +396,27 @@ public final class Spotlight {
 
     public init() {}
 
-    /// Show an array of steps in sequence. Safe to call from background — it will switch to Main actor.
+    /// Start a sequence of spotlights. Safe to call from any thread.
     public func show(steps: [SpotlightStep]) {
         guard !steps.isEmpty else { return }
         self.steps = steps
         self.currentIndex = 0
 
-        // ensure we call the actor-isolated method on the main actor
-        Task { @MainActor in
+        // Run the first step on the main actor. Capture self *weakly* to avoid
+        // sending an actor-isolated value into the Task.
+        Task { @MainActor [weak self] in
+            guard let self = self else { return }
             await self.showStep()
         }
     }
 
+    /// Shows current step. Main-actor isolated, async so callers can await if needed.
     @MainActor
     public func showStep() async {
         guard currentIndex < steps.count else { return }
         let step = steps[currentIndex]
 
-        // find key window safely (main actor)
+        // Find key window safely on main actor
         if let window = step.targetView.window ?? UIApplication.shared.connectedScenes
             .compactMap({ $0 as? UIWindowScene })
             .flatMap({ $0.windows })
@@ -421,11 +424,12 @@ public final class Spotlight {
 
             let spotlightView = SpotlightView(step: step)
 
-            // onDismiss must capture self weakly to avoid retain cycles
+            // onDismiss should advance to next step — capture self weakly to avoid retain cycle.
             spotlightView.onDismiss = { [weak self] in
-                guard let self = self else { return }
-                self.currentIndex += 1
-                Task { @MainActor in
+                // We must re-enter the main actor to call showStep (UI work).
+                Task { @MainActor [weak self] in
+                    guard let self = self else { return }
+                    self.currentIndex += 1
                     await self.showStep()
                 }
             }
