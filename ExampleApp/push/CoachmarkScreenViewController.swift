@@ -14,17 +14,25 @@ class CoachmarkScreenViewController: UIViewController, CleverTapDisplayUnitDeleg
     @IBOutlet var categoriesImageViews: [UIImageView]!
     @IBOutlet var recomendedImageViews: [UIImageView]!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var cartIcon: UISearchBar!
+    @IBOutlet weak var helpIcon: UISearchBar!
+    @IBOutlet weak var settingsIcon: UISearchBar!
     
     private let stackView = UIStackView()
+    
+    lazy var coachmarkTargets: [String: UIView] = [
+        "profile_image": profileImage,
+        "search": searchBar,
+        "cart": cartIcon,
+        "support_help": helpIcon,
+        "settings": settingsIcon
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         CleverTap.autoIntegrate()
         CleverTap.setDebugLevel(3)
-        
-        profileImage.accessibilityIdentifier = "profile_image"
-        searchBar.accessibilityIdentifier = "search"
         
         setupBottomBar()
         setupProfileAndBannerImages()
@@ -48,7 +56,7 @@ class CoachmarkScreenViewController: UIViewController, CleverTapDisplayUnitDeleg
            let customKV = jsonData["custom_kv"] as? [String: Any] {
             print("Native Display Data: \(customKV)")
             CleverTap.sharedInstance()?.recordDisplayUnitViewedEvent(forID: unit.unitID!)
-            CoachmarkManager.shared.showCoachmarks(fromJson: customKV, in: self.view){
+            CoachmarkManager.shared.showCoachmarks(fromJson: customKV, in: self.view, targets: self.coachmarkTargets){
                 CleverTap.sharedInstance()?.recordDisplayUnitClickedEvent(forID: unit.unitID!)
             }
         } else {
@@ -76,9 +84,6 @@ class CoachmarkScreenViewController: UIViewController, CleverTapDisplayUnitDeleg
         
         
         homeIcon.accessibilityIdentifier = "home"
-        cartIcon.accessibilityIdentifier = "cart"
-        helpIcon.accessibilityIdentifier = "support_help"
-        settingsIcon.accessibilityIdentifier = "settings"
         
         [homeIcon, cartIcon, helpIcon, settingsIcon].forEach { stackView.addArrangedSubview($0) }
         

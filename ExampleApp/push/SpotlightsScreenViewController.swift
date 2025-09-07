@@ -7,6 +7,7 @@
 
 import UIKit
 import CleverTapSDK
+import CTTemplates
 
 class SpotlightsScreenViewController: UIViewController, CleverTapDisplayUnitDelegate {
     
