@@ -66,10 +66,10 @@ public class TooltipManager {
                 }
                 
                 let bgColorHex = (jsonDict[colorKey] as? String) ?? "#FF0000" // fallback red
-                let bubbleColor = UIColor(hex: bgColorHex) ?? .systemRed
+                let bubbleColor = UIColor(ct_hex: bgColorHex) ?? .systemRed
                 
                 let textColorHex = (jsonDict[textColorKey] as? String) ?? "#FFFFFF"
-                let textColor = UIColor(hex: textColorHex) ?? .white
+                let textColor = UIColor(ct_hex: textColorHex) ?? .white
                 
                 steps.append([
                     "targetViewId": targetId,

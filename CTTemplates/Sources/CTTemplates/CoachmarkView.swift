@@ -72,8 +72,8 @@ class CoachmarkView: UIView {
         
 //        let skipButton = UIButton(type: .system)
 //        var skipConfig = UIButton.Configuration.filled()
-//        skipConfig.baseBackgroundColor = UIColor(hex: skipButtonBackgroundColor)?.withAlphaComponent(0.3)
-//        skipConfig.baseForegroundColor = UIColor(hex: skipButtonTextColor)
+//        skipConfig.baseBackgroundColor = UIColor(ct_hex: skipButtonBackgroundColor)?.withAlphaComponent(0.3)
+//        skipConfig.baseForegroundColor = UIColor(ct_hex: skipButtonTextColor)
 //        skipConfig.cornerStyle = .medium
 //        skipConfig.title = skipButtonText
 //        skipButton.configuration = skipConfig
@@ -90,14 +90,14 @@ class CoachmarkView: UIView {
         let skipButton = UIButton(type: .system)
         if #available(iOS 15.0, *) {
             var skipConfig = UIButton.Configuration.filled()
-            skipConfig.baseBackgroundColor = UIColor(hex: skipButtonBackgroundColor)?.withAlphaComponent(0.3)
-            skipConfig.baseForegroundColor = UIColor(hex: skipButtonTextColor)
+            skipConfig.baseBackgroundColor = UIColor(ct_hex: skipButtonBackgroundColor)?.withAlphaComponent(0.3)
+            skipConfig.baseForegroundColor = UIColor(ct_hex: skipButtonTextColor)
             skipConfig.cornerStyle = .medium
             skipConfig.title = skipButtonText
             skipButton.configuration = skipConfig
         } else {
-            skipButton.backgroundColor = UIColor(hex: skipButtonBackgroundColor)?.withAlphaComponent(0.3)
-            skipButton.setTitleColor(UIColor(hex: skipButtonTextColor), for: .normal)
+            skipButton.backgroundColor = UIColor(ct_hex: skipButtonBackgroundColor)?.withAlphaComponent(0.3)
+            skipButton.setTitleColor(UIColor(ct_hex: skipButtonTextColor), for: .normal)
             skipButton.setTitle(skipButtonText, for: .normal)
         }
 
@@ -114,8 +114,8 @@ class CoachmarkView: UIView {
         
         let nextButton = UIButton(type: .system)
         nextButton.setTitle(currentIndex == totalSteps ? finalButtonText : positiveButtonText, for: .normal)
-        nextButton.setTitleColor(UIColor(hex: positiveButtonTextColor), for: .normal)
-        nextButton.backgroundColor = UIColor(hex: positiveButtonBackgroundColor)
+        nextButton.setTitleColor(UIColor(ct_hex: positiveButtonTextColor), for: .normal)
+        nextButton.backgroundColor = UIColor(ct_hex: positiveButtonBackgroundColor)
         nextButton.layer.cornerRadius = 5
         nextButton.addTarget(self, action: #selector(nextTapped), for: .touchUpInside)
         nextButton.layer.borderColor = UIColor.red.cgColor // Change color as needed
