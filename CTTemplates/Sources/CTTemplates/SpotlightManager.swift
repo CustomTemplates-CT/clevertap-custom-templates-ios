@@ -57,7 +57,7 @@ public class SpotlightManager {
         
         // Extract text color
         if let colorHex = jsonDict["nd_text_color"] as? String {
-            self.textColor = UIColor(hex: colorHex) ?? .white
+            self.textColor = UIColor(ct_hex: colorHex) ?? .white
         }
         
         // Extract shape
